@@ -30,7 +30,7 @@ public class CargarFragment extends Fragment {
         vm.getmMensaje().observe(getViewLifecycleOwner(), mensaje -> {
             Toast.makeText(getContext(), mensaje, Toast.LENGTH_LONG).show();
 
-            // 👇 limpiar solo si el mensaje fue éxito
+            
             if ("Dato cargado correctamente".equals(mensaje)) {
                 binding.etCodigo.setText("");
                 binding.etDescripcion.setText("");
