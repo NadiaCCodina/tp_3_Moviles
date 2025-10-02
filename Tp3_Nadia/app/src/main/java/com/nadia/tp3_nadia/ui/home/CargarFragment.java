@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.nadia.tp3_nadia.databinding.FragmentCargarBinding;
@@ -30,13 +31,16 @@ public class CargarFragment extends Fragment {
         vm.getmMensaje().observe(getViewLifecycleOwner(), mensaje -> {
             Toast.makeText(getContext(), mensaje, Toast.LENGTH_LONG).show();
 
-            
-            if ("Dato cargado correctamente".equals(mensaje)) {
-                binding.etCodigo.setText("");
-                binding.etDescripcion.setText("");
-                binding.etPrecio.setText("");
-            }
         });
+            vm.getlimpiarDatos().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+                @Override
+                public void onChanged(Boolean aBoolean) {
+                    binding.etCodigo.setText("");
+                    binding.etDescripcion.setText("");
+                    binding.etPrecio.setText("");
+                }
+            });
+
 
         binding.btCargar.setOnClickListener(new View.OnClickListener() {
          @Override
